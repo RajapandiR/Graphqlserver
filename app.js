@@ -42,13 +42,13 @@ const server = new ApolloServer({
       message: err.message
     })
   },
-  playground: IN_PORD
-    ? false
-    : {
-        settings: {
-          "request.credentials": "include",
-        },
-      },
+  playground: IN_PORD,
+    // ? false
+    // : {
+    //     settings: {
+    //       "request.credentials": "include",
+    //     },
+    //   },
   context: ({ req, res }) => ({ req, res }),
   uploads: {
     maxFileSize: 10000000, // 10 MB
@@ -56,13 +56,13 @@ const server = new ApolloServer({
   }
 });
 
-mongoose.connect(DB,
-	{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex:true,
-    useFindAndModify: false
-  });
+// mongoose.connect(DB,
+// 	{
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex:true,
+//     useFindAndModify: false
+//   });
 
 app.get('/', (req, res) => res.send("hello world"))
 server.applyMiddleware({ app, cors: true });
