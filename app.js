@@ -56,16 +56,16 @@ const server = new ApolloServer({
   }
 });
 
-// mongoose.connect(DB,
-// 	{
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useCreateIndex:true,
-//     useFindAndModify: false
-//   });
+mongoose.connect(DB,
+	{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex:true,
+    useFindAndModify: false
+  });
 
 app.get('/', (req, res) => res.send("hello world"))
-server.applyMiddleware({ app, cors: false });
+server.applyMiddleware({ app, cors: true });
 app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
 
 // app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
