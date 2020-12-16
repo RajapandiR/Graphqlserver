@@ -11,6 +11,7 @@ export default {
 		// 	return product;
 		// },
 		products: async (root, args,{ req, res }, info ) => {
+			
 			if(req.session.isValid !== true){
 				return res.status(401).send({ "statusCode": 401, message: 'Please Login' });
 			}
