@@ -15,18 +15,18 @@ import { DB, IN_PORD, PORT, SESSION_SECRET } from './config';
 const app = express()
 const MongoStore = connectMongo(session);
 app.use(cors());
-app.use(session({
-  resave: false,
-  saveUninitialized: true,
-  keys: ['username', 'token' , "id" , "role", "isValid"],
-  secret: SESSION_SECRET,
-  cookie: { maxAge: 1209600000 }, // two weeks in milliseconds
-  store: new MongoStore({
-    url: DB,
-    autoReconnect: true,
-    autoRemove: 'disabled'
-  })
-}));
+// app.use(session({
+//   resave: false,
+//   saveUninitialized: true,
+//   keys: ['username', 'token' , "id" , "role", "isValid"],
+//   secret: SESSION_SECRET,
+//   cookie: { maxAge: 1209600000 }, // two weeks in milliseconds
+//   store: new MongoStore({
+//     url: DB,
+//     autoReconnect: true,
+//     autoRemove: 'disabled'
+//   })
+// }));
 
 const server = new ApolloServer({
 	root,

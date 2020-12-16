@@ -6,36 +6,36 @@ import jwt from '../../utils/jwt';
 
 export default {
 	Query: {
-		// products: async (root, args,{ req }, info ) => {
-		// 	let product = await Product.find()
-		// 	return product;
-		// },
-		products: async (root, args,{ req, res }, info ) => {
-			
-			if(req.session.isValid !== true){
-				return res.status(401).send({ "statusCode": 401, message: 'Please Login' });
-			}
-			else {
-				const header = req.headers.authorization;
-				if (header == req.session.token) {
-					// const token = header.replace("Bearer ", "");
-					const token = jwt.verifyToken(header);
-					if(token){
-						let product = await Product.find();
-						if (!product) {
-							throw new AuthenticationError("Invalid product.");
-						}
-						return product;
-					}
-				}
-				let requireAuth = true
-				if (requireAuth) {
-					return res.status(401).send({ auth: false, message: 'No Authorization header provided.' });
-				// throw new AuthenticationError("You must be logged in.");
-				}
-				return null;
-			}
+		products: async (root, args,{ req }, info ) => {
+			let product = await Product.find()
+			return product;
 		},
+		// products: async (root, args,{ req, res }, info ) => {
+			
+		// 	if(req.session.isValid !== true){
+		// 		return res.status(401).send({ "statusCode": 401, message: 'Please Login' });
+		// 	}
+		// 	else {
+		// 		const header = req.headers.authorization;
+		// 		if (header == req.session.token) {
+		// 			// const token = header.replace("Bearer ", "");
+		// 			const token = jwt.verifyToken(header);
+		// 			if(token){
+		// 				let product = await Product.find();
+		// 				if (!product) {
+		// 					throw new AuthenticationError("Invalid product.");
+		// 				}
+		// 				return product;
+		// 			}
+		// 		}
+		// 		let requireAuth = true
+		// 		if (requireAuth) {
+		// 			return res.status(401).send({ auth: false, message: 'No Authorization header provided.' });
+		// 		// throw new AuthenticationError("You must be logged in.");
+		// 		}
+		// 		return null;
+		// 	}
+		// },
 		product: async (root, args,{ req }, info ) => {
 			let product = await Product.findById(args.id)
 			return product;
