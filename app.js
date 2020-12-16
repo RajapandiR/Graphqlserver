@@ -56,13 +56,13 @@ const server = new ApolloServer({
   }
 });
 
-// mongoose.connect(DB,
-// 	{
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useCreateIndex:true,
-//     useFindAndModify: false
-//   });
+mongoose.connect(DB,
+	{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex:true,
+    useFindAndModify: false
+  });
 
 app.get('/', (req, res) => res.send("hello world"))
 server.applyMiddleware({ app, cors: true });
