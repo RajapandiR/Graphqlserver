@@ -8,6 +8,7 @@ export default {
 	Query: {
 		products: async (root, args,{ req }, info ) => {
 			let product = await Product.find()
+			console.log("Product", product);
 			return product;
 		},
 		// products: async (root, args,{ req, res }, info ) => {
