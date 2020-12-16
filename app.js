@@ -28,33 +28,33 @@ app.use(cors());
 //   })
 // }));
 
-// const server = new ApolloServer({
-// 	root,
-// 	typeDefs,
-//   resolvers,
+const server = new ApolloServer({
+	root,
+	typeDefs,
+  resolvers,
 
-//   formatError(err) {
-//   //   let s=err.message.split('/')
-//   //   console.log(s) 
-//   //   // console.log(err.message.split('/'))
-//   //   // const error = getErrorCode(err.message)
-//     return ({
-//       message: err.message
-//     })
-//   },
-//   playground: IN_PORD
-//     ? false
-//     : {
-//         settings: {
-//           "request.credentials": "include",
-//         },
-//       },
-//   context: ({ req, res }) => ({ req, res }),
-//   uploads: {
-//     maxFileSize: 10000000, // 10 MB
-//     maxFiles: 20
-//   }
-// });
+  formatError(err) {
+  //   let s=err.message.split('/')
+  //   console.log(s) 
+  //   // console.log(err.message.split('/'))
+  //   // const error = getErrorCode(err.message)
+    return ({
+      message: err.message
+    })
+  },
+  playground: IN_PORD,
+    // ? false
+    // : {
+    //     settings: {
+    //       "request.credentials": "include",
+    //     },
+    //   },
+  context: ({ req, res }) => ({ req, res }),
+  uploads: {
+    maxFileSize: 10000000, // 10 MB
+    maxFiles: 20
+  }
+});
 
 // mongoose.connect(DB,
 // 	{
@@ -65,10 +65,10 @@ app.use(cors());
 //   });
 
 app.get('/', (req, res) => res.send("hello world"))
-// server.applyMiddleware({ app, cors: false });
-app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}`))
+server.applyMiddleware({ app, cors: true });
+app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
 
-
+// app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
 // import express from 'express';
 
 // const app = express()
