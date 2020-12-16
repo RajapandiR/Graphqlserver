@@ -9,10 +9,11 @@ import root from './graphql/typeDefs/root';
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
 import { ApolloServer } from 'apollo-server-express';
-import { DB, IN_PORD, PORT, SESSION_SECRET } from './config';
+import { DB, IN_PORD, SESSION_SECRET } from './config';
 
 // const { errorType } = require('./config/error')
 const app = express()
+const port = process.env.PORT || 3000;
 const MongoStore = connectMongo(session);
 app.use(cors());
 app.use(session({
@@ -70,4 +71,5 @@ mongoose.connect(DB,
 
 app.get('/', (req, res) => res.send("hello world"))
 server.applyMiddleware({ app, cors: false });
-app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
+// app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
+app.listen(port,() => console.log(`Server on ${port}`));
