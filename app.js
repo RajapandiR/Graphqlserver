@@ -43,7 +43,7 @@ const server = new ApolloServer({
       message: err.message
     })
   },
-  introspection: false,  
+  introspection: true,  
   playground: IN_PORD,
     // ? false
     // : {
@@ -52,7 +52,7 @@ const server = new ApolloServer({
     //     },
     //   },
   context: ({ req, res }) => ({ req, res }),
-  // tracing: true,
+  tracing: true,
   uploads: {
     maxFileSize: 10000000, // 10 MB
     maxFiles: 20
