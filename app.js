@@ -43,13 +43,13 @@ const server = new ApolloServer({
       message: err.message
     })
   },
-  playground: IN_PORD
-    ? true
-    : {
-        settings: {
-          "request.credentials": "include",
-        },
-      },
+  playground: IN_PORD,
+    // ? false
+    // : {
+    //     settings: {
+    //       "request.credentials": "include",
+    //     },
+    //   },
   context: ({ req, res }) => ({ req, res }),
   uploads: {
     maxFileSize: 10000000, // 10 MB
