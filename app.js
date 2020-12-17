@@ -43,7 +43,9 @@ const server = new ApolloServer({
       message: err.message
     })
   },
-  playground: IN_PORD,
+  introspection: true,  
+  playground: true,
+  // playground: IN_PORD,
     // ? false
     // : {
     //     settings: {

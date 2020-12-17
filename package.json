@@ -6,7 +6,7 @@
   "scripts": {
     
     "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install npm ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "eval $(cat .env) nodemon -r esm"
   },
