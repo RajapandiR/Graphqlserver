@@ -76,7 +76,7 @@ const MONGODB_URI = "mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/gr
 //   });
 
 app.get('/', (req, res) => res.send("hello world"))
-server.applyMiddleware({ app, cors: true });
+server.applyMiddleware({ app, cors: false });
 app.listen({port: process.env.PORT|| PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
 
 // app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
