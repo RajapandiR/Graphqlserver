@@ -43,7 +43,7 @@ const server = new ApolloServer({
       message: err.message
     })
   },
-  introspection: true,  
+  introspection: false,  
   playground: IN_PORD,
     // ? false
     // : {
@@ -52,14 +52,14 @@ const server = new ApolloServer({
     //     },
     //   },
   context: ({ req, res }) => ({ req, res }),
-  tracing: true,
+  // tracing: true,
   uploads: {
     maxFileSize: 10000000, // 10 MB
     maxFiles: 20
   }
 });
 // const MONGODB_URI = "mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/graphql?retryWrites=true&w=majority";
-// heroku config:set MONGODB_URI="mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/graphql?retryWrites=true&w=majority"
+// heroku config:set MONGODB_URI="mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(DB || process.env.MONGODB_URI,
 {
       useNewUrlParser: true,
