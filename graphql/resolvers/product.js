@@ -110,7 +110,7 @@ export default {
 						console.log("Error", err)
 				
 			  });
-		
+			  console.log("Okay");
 			  const response = {
 				"statusCode": 200,
 				"message": message.CREATE_SUCCESS,
