@@ -76,6 +76,6 @@ mongoose.connect(DB || process.env.MONGODB_URI,
 
 app.get('/', (req, res) => res.send("hello world"))
 server.applyMiddleware({ app, cors: true });
-app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
+app.listen({port: process.env.PORT|| PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
 
 // app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
