@@ -43,13 +43,13 @@ const server = new ApolloServer({
       message: err.message
     })
   },
-  playground: IN_PORD,
-    // ? false
-    // : {
-    //     settings: {
-    //       "request.credentials": "include",
-    //     },
-    //   },
+  playground: IN_PORD
+    ? true
+    : {
+        settings: {
+          "request.credentials": "include",
+        },
+      },
   context: ({ req, res }) => ({ req, res }),
   uploads: {
     maxFileSize: 10000000, // 10 MB
@@ -75,7 +75,7 @@ mongoose.connect(DB || process.env.MONGODB_URI,
 //   });
 
 app.get('/', (req, res) => res.send("hello world"))
-server.applyMiddleware({ app, cors: false });
+server.applyMiddleware({ app, cors: true });
 app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
 
 // app.listen({port: PORT},() => console.log(`Apollo Server start on localhost:${PORT}${server.graphqlPath}`))
