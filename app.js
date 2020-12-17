@@ -51,6 +51,7 @@ const server = new ApolloServer({
     //     },
     //   },
   context: ({ req, res }) => ({ req, res }),
+  tracing: true,
   uploads: {
     maxFileSize: 10000000, // 10 MB
     maxFiles: 20
