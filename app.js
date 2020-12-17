@@ -58,9 +58,9 @@ const server = new ApolloServer({
     maxFiles: 20
   }
 });
-// const MONGODB_URI = "mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/graphql?retryWrites=true&w=majority";
+const MONGODB_URI = "mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/graphql?retryWrites=true&w=majority";
 // heroku config:set MONGODB_URI="mongodb+srv://Pandi:pandian12@cluster0.h3zrn.mongodb.net/test?retryWrites=true&w=majority"
-mongoose.connect(DB || process.env.MONGODB_URI,
+mongoose.connect(DB || MONGODB_URI,
 {
       useNewUrlParser: true,
       useUnifiedTopology: true,
