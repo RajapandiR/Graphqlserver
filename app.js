@@ -15,6 +15,7 @@ import { DB, IN_PORD, PORT, SESSION_SECRET } from './config';
 const app = express()
 const MongoStore = connectMongo(session);
 app.use(cors());
+app.disable("x-powered-by");
 // app.use(session({
 //   resave: false,
 //   saveUninitialized: true,
