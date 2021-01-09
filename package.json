@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
-    "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install npm ",
+    "start": "NODE_ENV=production node -r esm .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "eval $(cat .env) nodemon -r esm"
   },
@@ -26,6 +24,7 @@
     "http-errors": "^1.8.0",
     "jsonschema": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.11"
+    "mongoose": "^5.10.11",
+    "nodemon": "^2.0.7"
   }
 }

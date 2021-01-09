@@ -5,7 +5,6 @@ export default gql`
 	extend type Query {
 		roles: [Role!]
 		role(id: ID): Role
-		
 	}
 
 	extend type Mutation {
@@ -16,8 +15,11 @@ export default gql`
 			id: ID!
 			role: String
 		): Role!
-		deleteRole(id:ID): Role
-		}
+		deleteRole(
+			id:ID
+		): Role
+
+	}
 	type Role {
 		id: ID!
 		role: String

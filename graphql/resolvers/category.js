@@ -43,7 +43,6 @@ export default {
 				if (header == req.session.token) {
 					// const token = header.replace("Bearer ", "");
 					const token = jwt.verifyToken(header);
-					
 						if(token){
 							let category = await Category.find() 
 							const c = createCategories(category);
@@ -102,20 +101,33 @@ export default {
         
 		editcategory: async (root, args,{ req }, info ) => {
 			try{
-				const validate = await JsonSchemaValidator.validate(args, CategorySchema.editCategory());
-				if (!validate.valid) {
-					console.log("sss")
-					const e = JsonSchemaValidator.errorFormatter(validate.errors);
-					console.log("e",e);
-
-				}
-				let c = await Category.findByIdAndUpdate(args.id ,args, function(err, result1) {	
-					if(err){
-						console.log("Error", err);
-					}
-					console.log(args);
 				
-				})
+				// const validate = await JsonSchemaValidator.validate(args, CategorySchema.editCategory());
+				// if (!validate.valid) {
+				// 	console.log("sss")
+				// 	const e = JsonSchemaValidator.errorFormatter(validate.errors);
+				// 	console.log("e",e);
+
+				// }
+				var res;
+				if(req.session.role == "admin"){
+					let c = await Category.findByIdAndUpdate(args.id ,args, function(err, result1) {	
+						if(err){
+							console.log("Error", err);
+						}
+						// console.log(args);
+						res = {
+								"statusCode": 200,
+								"message": message.UPDATE_SUCCESS,
+						}
+					})
+				}
+				else{
+					res = {
+						"statusCode": 400,
+						"message": "Don't edit user only for admin",
+					}
+				}
 			}catch(err){
 				console.log(err)
 				const response = {
@@ -125,11 +137,7 @@ export default {
 				}
 				return response;	
 			} 
-			const response = {
-				"statusCode": 200,
-				"message": message.UPDATE_SUCCESS,
-			}
-			return response;
+			return res;
 		},
 		deletecategory: async (root, args,{ req }, info ) => {
 			await Category.findByIdAndRemove(args.id)

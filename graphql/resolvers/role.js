@@ -57,6 +57,7 @@ export default {
 				// 	console.log("e",e)
 				// }
 				let c = await Role.findByIdAndUpdate(args.id ,args, function(err, result1) {	
+					console.log(args);
 					if(err){
 						console.log("Error", err);
 					}				

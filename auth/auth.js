@@ -10,6 +10,7 @@ const getAuthUser = async (req) => {
       // const token = header.replace("Bearer ", "");
       const token = jwt.verify(header, SECRET);
       let user = await User.find({_id:token.userId});
+      // console.log("User", user);
       if (!user) {
       throw new AuthenticationError("Invalid user.");
       }

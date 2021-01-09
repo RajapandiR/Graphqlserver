@@ -33,6 +33,7 @@ export default {
 				// const token1 = header.replace("Bearer ", "");
 				const token = jwt.verifyToken(header);
 				let user = await User.find({_id:token.userId});
+				// console.log("User", user);
 				if (!user) {
 					throw new AuthenticationError("Invalid user.");
 				}
@@ -66,14 +67,14 @@ export default {
 		},
 		login: async (root, args,{ req }, info ) => {
 			try {
-				const role = await Role.findOne({role: args.role})
-				if(!role){
-					const response = {
-						"statusCode": 401,
-						"message": message.ROLE_INVALID
-					}
-					return response
-				}
+				// const role = await Role.findOne({role: args.role})
+				// if(!role){
+				// 	const response = {
+				// 		"statusCode": 401,
+				// 		"message": message.ROLE_INVALID
+				// 	}
+				// 	return response
+				// }
 				const user = await User.findOne({username: args.username}).populate('role');
 				// save_session(req, user);
 				if(!user){
@@ -95,6 +96,7 @@ export default {
 					userId: user.id,
 					role: user.role.role
 				};
+				console.log("Payload", payload);
 				const token = await jwt.issueToken(payload)
 				save_session(req, user, token);
 				// console.log("token",token);
@@ -173,7 +175,7 @@ export default {
 					if(err){
 						console.log("Error", err);
 					}
-					console.log(args);
+					// console.log(args);
 				
 				})
 			}catch(err){

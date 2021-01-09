@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const RoleSchema = mongoose.Schema({
     role : { type: String},
+    // create : { type: Boolean, default: 1},
+    // read : { type: Boolean, default: 0},
+    // update : { type: Boolean, default: 0},
+    // delete : { type: Boolean, default: 0},
     status : { type: Boolean, default: 1},
 }, { timestamps: true });
 
